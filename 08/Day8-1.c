@@ -26,6 +26,9 @@ int main() {
 
 	// VM/Bytecode time
 	for (memoryAddress = 0; memoryAddress < len;) {
+		if (opROM[memoryAddress] == 'j' && argROM[memoryAddress] == 0) {
+			break;
+		}
 		if (table[memoryAddress] == 1) {
 			break;
 		}
@@ -43,7 +46,7 @@ int main() {
 				memoryAddress = memoryAddress + argROM[memoryAddress];
 				break;
 		}
-		printf("%c %d\n", opROM[memoryAddress], argROM[memoryAddress]);
+		printf("%0#5x: %c %d\n", memoryAddress, opROM[memoryAddress], argROM[memoryAddress]);
 	}
 
 	printf("%d\n", acc);
